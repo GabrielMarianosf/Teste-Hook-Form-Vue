@@ -12,14 +12,6 @@
           :error-message="username.error && username.error.message"
         />
         <Input
-          label="Username"
-          icon="fa-user"
-          v-model="username.value"
-          :ref="username.ref"
-          :is-danger="!!username.error"
-          :error-message="username.error && username.error.message"
-        />
-        <Input
           label="Password"
           type="password"
           icon="fa-key"
@@ -65,26 +57,26 @@ import { useForm } from "vue-hooks-form";
 export default defineComponent({
   name: "Demo",
   components: {
-    Input,
+    Input
   },
   props: {
-    modelValue: String,
+    modelValue: String
   },
   setup() {
     const { useField, errors, values, handleSubmit } = useForm({
       defaultValues: {
-        username: "Victor",
-      },
+        username: "Victor"
+      }
     });
     const username = useField("username", {
-      rule: { required: true },
+      rule: { required: true }
     });
     const password = useField("password", {
       rule: {
         required: true,
         min: 6,
-        max: 10,
-      },
+        max: 10
+      }
     });
     const confirmedPassword = useField("confirmedPassword", {
       rule: {
@@ -96,19 +88,19 @@ export default defineComponent({
             );
           }
           return true;
-        },
-      },
+        }
+      }
     });
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = data => console.log(data);
     return {
       username,
       password,
       confirmedPassword,
       onSubmit: handleSubmit(onSubmit),
       errors,
-      values,
+      values
     };
-  },
+  }
 });
 </script>
 
